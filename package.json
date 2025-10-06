@@ -6,8 +6,8 @@
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "build": {
-    "appId": "hedera.io",
-    "productName": "Hedera Wallet",
+    "appId": "tron.io",
+    "productName": "Tron Wallet",
     "directories": {
       "buildResources": "resources"
     },
