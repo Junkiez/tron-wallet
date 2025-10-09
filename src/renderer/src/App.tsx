@@ -6,41 +6,43 @@ import { TronLogo } from './components/tron-logo'
 import { FloatingElements } from './components/floating-elements'
 
 const loadingHeaders = [
-  { min: 0, max: 4, message: 'Network Initialization' },
-  { min: 4, max: 10, message: 'Network Connection' },
-  { min: 10, max: 25, message: 'Chain Synchronization' },
-  { min: 35, max: 37, message: 'Block Downloading' },
-  { min: 37, max: 50, message: 'Data Validation' },
-  { min: 50, max: 75, message: 'Chain Update' },
-  { min: 75, max: 90, message: 'Integrity Verification' },
+  { min: 1, max: 4, message: 'Environment Setup' },
+  { min: 4, max: 12, message: 'Node Connection' },
+  { min: 12, max: 25, message: 'Network Status Check' },
+  { min: 25, max: 45, message: 'Block Retrieval' },
+  { min: 45, max: 65, message: 'Block Validation' },
+  { min: 65, max: 90, message: 'State Update' },
   { min: 90, max: 100, message: 'Finalizing Sync' }
 ]
 
 const loadingMessages = [
-  { min: 0, max: 2, message: 'Preparing TRON environment' },
-  { min: 2, max: 3, message: 'Loading local configuration' },
-  { min: 3, max: 4, message: 'Checking connection settings' },
-  { min: 4, max: 6, message: 'Connecting to TRON network' },
-  { min: 6, max: 8, message: 'Syncing with active nodes' },
-  { min: 8, max: 10, message: 'Establishing reliable connections' },
-  { min: 10, max: 15, message: 'Synchronizing local chain with TRON network' },
-  { min: 15, max: 20, message: 'Getting latest block height' },
-  { min: 20, max: 25, message: 'Preparing recent block index' },
-  { min: 25, max: 29, message: 'Fetching recent blocks from network' },
-  { min: 29, max: 33, message: 'Receiving blockchain data packets' },
-  { min: 33, max: 37, message: 'Updating local block storage' },
-  { min: 37, max: 41, message: 'Verifying transaction structure' },
-  { min: 41, max: 46, message: 'Checking block hashes and links' },
-  { min: 46, max: 50, message: 'Ensuring data consistency' },
-  { min: 50, max: 58, message: 'Loading solid blocks from checkpoints' },
-  { min: 58, max: 67, message: 'Applying verified chain segments' },
-  { min: 67, max: 75, message: 'Refreshing local blockchain state' },
-  { min: 75, max: 80, message: 'Confirming consensus state' },
-  { min: 80, max: 85, message: 'Checking TRON network signatures' },
-  { min: 85, max: 90, message: 'Verifying solid block references' },
-  { min: 90, max: 93, message: 'Applying final updates' },
-  { min: 93, max: 97, message: 'Preparing wallet for use' },
-  { min: 97, max: 100, message: 'Synchronization complete' }
+  { min: 1, max: 2, message: 'Preparing EOS environment' },
+  { min: 2, max: 3, message: 'Loading configuration and plugins' },
+  { min: 3, max: 4, message: 'Initializing local directories' },
+
+  { min: 4, max: 6, message: 'Connecting to EOS mainnet nodes' },
+  { min: 6, max: 9, message: 'Discovering active Block Producers' },
+  { min: 9, max: 12, message: 'Establishing stable API channels' },
+
+  { min: 12, max: 16, message: 'Requesting latest block height' },
+  { min: 16, max: 21, message: 'Getting irreversible block reference' },
+  { min: 21, max: 25, message: 'Verifying connection latency' },
+
+  { min: 25, max: 32, message: 'Requesting recent block data from network' },
+  { min: 32, max: 39, message: 'Synchronizing to latest irreversible block' },
+  { min: 39, max: 45, message: 'Updating local chain records' },
+
+  { min: 45, max: 52, message: 'Verifying block signatures from producers' },
+  { min: 52, max: 59, message: 'Checking block order and consensus status' },
+  { min: 59, max: 65, message: 'Ensuring data integrity and authenticity' },
+
+  { min: 65, max: 73, message: 'Applying validated blocks to local index' },
+  { min: 73, max: 81, message: 'Refreshing account and resource tables' },
+  { min: 81, max: 90, message: 'Loading latest contract information' },
+
+  { min: 90, max: 95, message: 'Applying final updates' },
+  { min: 95, max: 99, message: 'Preparing wallet for use' },
+  { min: 99, max: 100, message: 'Synchronization complete ✅' }
 ]
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -49,7 +51,7 @@ export default function Page() {
     <div className="relative w-full h-screen overflow-hidden bg-[#f5f0eb]">
       <SpaceBackground />
       <FloatingElements />
-      <div className="z-10 flex flex-col items-center justify-between h-full py-16">
+      <div className="z-10 flex flex-col items-center justify-between h-full py-6">
         <Content />
       </div>
     </div>
@@ -75,9 +77,7 @@ function Content() {
         const message = loadingMessages.find(
           (msg) => newProgress >= msg.min && newProgress < msg.max
         )
-        const header = loadingHeaders.find(
-          (msg) => newProgress >= msg.min && newProgress < msg.max
-        )
+        const header = loadingHeaders.find((msg) => newProgress >= msg.min && newProgress < msg.max)
 
         if (message && header) {
           setCurrentMessage(message.message)
@@ -104,12 +104,11 @@ function Content() {
     }
   }, [])
 
-
   return (
     <>
       <div className="text-transparent">.</div>
 
-      <div className="w-[600px] relative z-10 flex flex-col items-center justify-center h-full gap-8 px-8">
+      <div className="w-[600px] relative z-10 flex flex-col items-center justify-center h-full gap-6 px-8">
         <TronLogo progress={progress} />
 
         <div className="text-center">
@@ -151,12 +150,13 @@ function Content() {
             </div>
           </div>
         </div>
-
-        <p className="text-lg text-red-400 tracking-wider">Syncing with blockchain network</p>
       </div>
-      <p className="text-md text-stone-400 uppercase tracking-wider">
-        Secure • Decentralized • Transparent
-      </p>
+      <div className="flex flex-col items-center">
+        <p className="text-lg text-red-400 tracking-wider">Syncing with blockchain network</p>
+        <p className="text-md text-stone-400 uppercase tracking-wider">
+          Secure • Decentralized • Transparent
+        </p>
+      </div>
     </>
   )
 }

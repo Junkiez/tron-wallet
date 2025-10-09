@@ -13,8 +13,8 @@ function createWindow(): void {
     height: 600,
     minWidth: 800,
     minHeight: 600,
-    maxWidth: 2140,
-    maxHeight: 1440,
+    maxWidth: 3840,
+    maxHeight: 2160,
     show: false,
     icon: path.join(__dirname, '../../resources/icon.png'),
     autoHideMenuBar: true,
@@ -64,7 +64,7 @@ app.whenReady().then(() => {
   createWindow()
 
   // Disable Alt menu in production
-    Menu.setApplicationMenu(null)
+  Menu.setApplicationMenu(null)
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
